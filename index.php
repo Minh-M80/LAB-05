@@ -1,17 +1,39 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use App\Controllers\HomeController;
 use App\Controllers\ProductController;
 
-// Router siêu đơn giản
-$page = $_GET['page'] ?? 'home';
+$page = $_GET['page'] ?? 'product-list';
 
-if ($page === 'home') {
-    (new HomeController())->index();
-} elseif ($page === 'product') {
-    (new ProductController())->index();
-} else {
-    echo "404 - Page Not Found";
+switch ($page) {
+    case 'product-list':
+        (new ProductController())->index();
+        break;
+
+    case 'product-add':
+        (new ProductController())->create();
+        break;
+
+    case 'product-store':
+        (new ProductController())->store();
+        break;
+
+    case 'product-edit':
+        (new ProductController())->edit();
+        break;
+
+    case 'product-update':
+        (new ProductController())->update();
+        break;
+
+    case 'product-delete':
+        (new ProductController())->delete();
+        break;
+
+    case 'product-detail':
+        (new ProductController())->detail();
+        break;
+
+    default:
+        echo "404 Not Found";
 }
-
